@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#24104f">
+<meta name="description" content="PK Mart — Shop Smart • Live Better">
+<title>PK Mart — Shop Smart • Live Better</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--p:#6d35e8;--p2:#4d20bd;--o:#ff9f1c;--pink:#ef476f;--green:#11b89a;--navy:#171936;--ink:#20233b;--muted:#74778c;--bg:#f7f7fb;--card:#fff;--line:#e7e7ef;--r:18px;--shadow:0 8px 28px rgba(28,20,70,.10)}
+html{scroll-behavior:smooth}body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:72px}button,input,select,textarea{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}.hide{display:none!important}
+.wrap{width:min(1180px,94%);margin:auto}.page{padding:16px 0 36px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.btn{border:0;border-radius:11px;padding:11px 15px;font-weight:800}.primary{background:var(--p);color:#fff}.orange{background:var(--o);color:#201400}.light{background:#f0eef9;color:var(--ink)}.danger{background:#ffe6eb;color:#a51e3d}.success{background:#ddfaf3;color:#087866}.dark{background:var(--navy);color:#fff}.sm{padding:7px 10px;font-size:12px}.block{width:100%}
+.splash{position:fixed;inset:0;background:linear-gradient(145deg,#28105c,#171936);z-index:99999;display:flex;align-items:center;justify-content:center;color:#fff;transition:opacity .35s}.splash.off{opacity:0;pointer-events:none}.splash-inner{text-align:center}.logo-box{width:106px;height:106px;margin:auto;border-radius:28px;background:linear-gradient(145deg,#7138ed,#4b1db6);display:flex;align-items:center;justify-content:center;box-shadow:0 18px 45px #0006}.logo-mark{font-size:48px;font-weight:900;color:#fff}.logo-mark b{color:var(--o)}.brand{font-size:34px;font-weight:900;margin-top:15px}.brand b{color:var(--o)}.tag{margin-top:8px;color:#eee;font-weight:700}.dots{margin-top:22px;letter-spacing:5px;color:var(--o)}
+.top{background:var(--navy);color:#fff;padding:8px 0;font-size:12px}.topin{display:flex;justify-content:space-between;gap:8px}
+header{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 15px #0000000c}.nav{min-height:65px;display:flex;align-items:center;gap:12px}.mini-brand{font-size:22px;font-weight:900;color:var(--p);white-space:nowrap}.mini-brand b{color:var(--o)}.search{flex:1;position:relative}.search input{width:100%;height:43px;border:1px solid var(--line);border-radius:13px;padding:0 43px 0 14px;outline:0;background:#f8f8fb}.search button{position:absolute;right:4px;top:4px;width:35px;height:35px;border:0;border-radius:9px;background:var(--p);color:#fff}.navicons{display:flex;gap:6px}.ico{width:41px;height:41px;border:0;border-radius:11px;background:#f2f1f8;position:relative;font-size:18px}.count{position:absolute;right:-3px;top:-5px;min-width:18px;height:18px;border-radius:50%;background:var(--pink);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center}
+.cats{border-top:1px solid #f1f1f5;border-bottom:1px solid var(--line);background:#fff}.cat-scroll{display:flex;gap:8px;overflow:auto;padding:9px 0}.cat{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:25px;padding:8px 13px}.cat.active,.cat:hover{background:var(--p);color:#fff}
+.hero{margin-top:15px;border-radius:22px;padding:24px;background:linear-gradient(135deg,#6731df,#ee3e83);color:#fff;display:grid;grid-template-columns:1.4fr .8fr;align-items:center;overflow:hidden}.hero h1{font-size:clamp(30px,6vw,52px);margin-bottom:8px}.hero p{line-height:1.6;opacity:.95}.hero .actions{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}.hero-art{text-align:center;font-size:105px}
+.title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:23px 0 13px}.title h2{font-size:22px}.muted{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.prod{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 3px 13px #00000008;position:relative}.pimg{height:215px;background:#f0f0f5;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.pimg img{width:100%;height:100%;object-fit:cover}.placeholder{font-size:64px}.stock{position:absolute;left:8px;top:8px;padding:5px 7px;border-radius:7px;background:#dff9f2;color:#087866;font-size:10px;font-weight:900}.stock.out{background:#ffe3e9;color:#a51e3d}.heart{position:absolute;right:8px;top:8px;width:35px;height:35px;border:0;border-radius:50%;background:#fff;box-shadow:0 2px 9px #0002}.pbody{padding:11px}.pcat{font-size:11px;color:var(--p);font-weight:800}.pname{font-weight:800;margin:5px 0;min-height:36px;font-size:14px}.stars{color:#f59e0b;font-size:12px}.prices{display:flex;gap:7px;align-items:center;margin:7px 0}.price{font-size:18px;font-weight:900}.old{text-decoration:line-through;color:#9b9daa;font-size:12px}.pbuttons{display:flex;gap:6px}.pbuttons .btn{flex:1;padding:8px 5px;font-size:11px}
+.banner{margin-top:15px;padding:14px 16px;border-radius:14px;background:#fff4dd;border:1px solid #ffd78c;color:#724900;font-weight:800}
+.empty{text-align:center;padding:45px 15px;color:var(--muted)}.empty .big{font-size:48px;margin-bottom:8px}
+.modal-bg{position:fixed;inset:0;background:#0009;z-index:5000;display:flex;align-items:center;justify-content:center;padding:12px}.modal{width:min(650px,100%);max-height:94vh;overflow:auto;background:#fff;border-radius:20px}.modal.lg{width:min(1000px,100%)}.mh{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line)}.mh h3{font-size:19px}.close{border:0;background:#f1f1f5;width:35px;height:35px;border-radius:50%}.mb{padding:18px}
+.fg{margin-bottom:13px}.fg label{display:block;font-size:13px;font-weight:800;margin-bottom:5px}.input,.select,.textarea{width:100%;border:1px solid #d9dae4;border-radius:10px;padding:11px;outline:0;background:#fff}.input:focus,.select:focus,.textarea:focus{border-color:var(--p);box-shadow:0 0 0 3px #6d35e81a}.textarea{min-height:85px;resize:vertical}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.tabs{display:flex;gap:5px;overflow:auto;border-bottom:1px solid var(--line);margin-bottom:14px}.tab{border:0;background:#fff;padding:10px 13px;border-bottom:3px solid transparent;white-space:nowrap;font-weight:800}.tab.on{color:var(--p);border-color:var(--p)}
+.login-card{width:min(430px,100%);margin:auto}.login-brand{text-align:center;padding:8px 0 18px}.login-logo{width:70px;height:70px;margin:auto;border-radius:20px;background:linear-gradient(145deg,#7138ed,#4b1db6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;font-weight:900}.login-brand h2{margin-top:9px}.login-brand p{font-size:12px;color:var(--muted);margin-top:4px}.login-admin{display:flex;justify-content:center;margin-top:14px}.admin-dot{width:37px;height:37px;border:1px solid var(--line);border-radius:50%;background:#fff}
+.checkout-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.summary{padding:16px}.sumrow{display:flex;justify-content:space-between;padding:7px 0}.sumtotal{border-top:1px solid var(--line);margin-top:7px;padding-top:12px;font-size:19px;font-weight:900}
+.cartitem{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;padding:11px;border-bottom:1px solid var(--line)}.cartimg{width:70px;height:70px;border-radius:10px;background:#f1f1f5;overflow:hidden;display:flex;align-items:center;justify-content:center}.cartimg img{width:100%;height:100%;object-fit:cover}.qty{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;width:max-content}.qty button{width:29px;height:29px;border:0;background:#f2f2f6}.qty span{width:31px;text-align:center;padding-top:6px;font-size:12px}
+.order{padding:14px;margin-bottom:11px}.orderhead{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.status{display:inline-block;padding:5px 8px;border-radius:7px;font-size:11px;font-weight:900}.pending{background:#fff0c9;color:#875500}.confirmed{background:#dcecff;color:#164a9b}.shipped{background:#eee5ff;color:#5922b2}.delivered{background:#dcf8ed;color:#08735f}.cancelled{background:#ffe2e8;color:#a51e3d}.return{background:#ffe9d9;color:#9a4c00}.exchange{background:#ffe2f1;color:#9a1558}.timeline{display:flex;gap:4px;margin:14px 0}.step{flex:1;text-align:center;font-size:9px;color:#aaa}.step:before{content:"";display:block;height:7px;border-radius:8px;background:#e6e6ec;margin-bottom:5px}.step.on{color:var(--p);font-weight:900}.step.on:before{background:var(--p)}
+.management{display:grid;grid-template-columns:230px 1fr;gap:15px}.side{background:var(--navy);color:#fff;border-radius:16px;padding:10px;height:max-content;position:sticky;top:80px}.side h3{padding:11px;font-size:18px}.side button{width:100%;border:0;background:transparent;color:#d6d8e8;text-align:left;padding:10px 11px;border-radius:9px;margin:2px 0}.side button.on,.side button:hover{background:#282b4e;color:#fff}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{padding:15px}.stat .n{font-size:25px;font-weight:900;margin-top:5px}.stat .l{font-size:12px;color:var(--muted)}.table{overflow:auto}.table table{border-collapse:collapse;width:100%;min-width:680px}.table th,.table td{padding:9px;border-bottom:1px solid var(--line);font-size:12px;text-align:left}.table th{background:#f7f7fa}.permgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.perm{border:1px solid var(--line);border-radius:9px;padding:8px;font-size:12px}
+.bottom{position:fixed;left:0;right:0;bottom:0;height:64px;background:#fff;border-top:1px solid var(--line);z-index:1500;display:none;grid-template-columns:repeat(5,1fr)}.bottom button{border:0;background:#fff;color:#777;font-size:10px}.bottom button b{display:block;font-size:20px;margin-bottom:2px}.bottom button.on{color:var(--p);font-weight:900}
+.toastbox{position:fixed;right:12px;bottom:78px;z-index:9000;display:flex;flex-direction:column;gap:7px}.toast{background:var(--navy);color:#fff;padding:11px 14px;border-radius:10px;box-shadow:var(--shadow);max-width:330px;font-size:13px}.toast.ok{background:#08735f}.toast.err{background:#a51e3d}
+.loading{position:fixed;inset:0;background:#fff9;z-index:9998;display:flex;align-items:center;justify-content:center}.spin{width:43px;height:43px;border:5px solid #ddd;border-top-color:var(--p);border-radius:50%;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.notice{padding:10px 12px;border-radius:9px;background:#eef3ff;color:#24478e;font-size:12px;margin-bottom:12px}.errbox{padding:10px 12px;border-radius:9px;background:#ffe7ec;color:#9c1d3b;font-size:12px;margin-bottom:12px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){body{padding-bottom:70px}.top{display:none}.nav{flex-wrap:wrap;padding:9px 0}.mini-brand{font-size:20px}.search{order:3;flex-basis:100%}.navicons{margin-left:auto}.hero{grid-template-columns:1fr;padding:20px}.hero-art{font-size:72px}.grid{grid-template-columns:repeat(2,1fr);gap:9px}.pimg{height:165px}.management{grid-template-columns:1fr}.side{position:static;display:flex;overflow:auto;gap:3px}.side h3{display:none}.side button{width:auto;white-space:nowrap}.row2,.row3,.checkout-grid{grid-template-columns:1fr}.permgrid{grid-template-columns:1fr 1fr}.bottom{display:grid}.hide-mobile{display:none!important}}
+@media(max-width:420px){.grid{grid-template-columns:1fr 1fr}.pimg{height:145px}.pname{font-size:13px}.pbuttons .btn{font-size:10px;padding:7px 3px}.permgrid{grid-template-columns:1fr}.cartitem{grid-template-columns:58px 1fr}.cartitem .cartact{grid-column:2}}
+</style>
+</head>
+<body>
+
+<div id="splash" class="splash">
+  <div class="splash-inner">
+    <div class="logo-box"><div class="logo-mark">P<span>K</span></div></div>
+    <div class="brand">PK<b>Mart</b></div>
+    <div class="tag">Shop Smart&nbsp; • &nbsp;Live Better</div>
+    <div class="dots">● ● ●</div>
+  </div>
+</div>
+
+<div id="loading" class="loading hide"><div class="spin"></div></div>
+<div id="toastbox" class="toastbox"></div>
+
+<div id="store">
+  <div class="top"><div class="wrap topin"><span>🇮🇳 PK Mart — Shop Smart • Live Better</span><span>Secure Shopping • COD • UPI • Support</span></div></div>
+  <header>
+    <div class="wrap nav">
+      <button class="mini-brand" style="border:0;background:transparent" onclick="goHome()">PK<b>Mart</b></button>
+      <div class="search"><input id="search" placeholder="Search for products, brands and more..." oninput="searchProducts(this.value)"><button onclick="searchProducts(document.getElementById('search').value)">⌕</button></div>
+      <div class="navicons">
+        <button class="ico" onclick="showWishlist()">♡<span id="wishCount" class="count">0</span></button>
+        <button class="ico" onclick="showCart()">🛒<span id="cartCount" class="count">0</span></button>
+        <button class="ico" onclick="openLogin()">👤</button>
+      </div>
+    </div>
+    <div class="cats"><div class="wrap cat-scroll" id="categories"><button class="cat active" onclick="filterCat('ALL',this)">All</button></div></div>
+  </header>
+
+  <main class="page">
+    <div class="wrap">
+      <section id="homePage">
+        <div class="hero">
+          <div><h1>Big Saving Days</h1><p>Smart shopping, great products और आसान checkout — PK Mart पर आपका स्वागत है।</p><div class="actions"><button class="btn orange" onclick="scrollToProducts()">Shop Now</button><button class="btn light" onclick="showCart()">My Cart</button></div></div>
+          <div class="hero-art">🛍️</div>
+        </div>
+        <div id="offerBanner"></div>
+        <div class="title"><h2>Best Deals For You</h2><span id="countText" class="muted"></span></div>
+        <div id="homeGrid" class="grid"></div>
+      </section>
+
+      <section id="listingPage" class="hide">
+        <div class="title"><h2 id="listingTitle">Products</h2><button class="btn light sm" onclick="goHome()">← Home</button></div>
+        <div id="listingGrid" class="grid"></div>
+      </section>
+
+      <section id="cartPage" class="hide">
+        <div class="title"><h2>🛒 My Cart</h2><button class="btn light sm" onclick="goHome()">← Continue Shopping</button></div>
+        <div id="cartArea"></div>
+      </section>
+
+      <section id="wishPage" class="hide">
+        <div class="title"><h2>♡ Wishlist</h2><button class="btn light sm" onclick="goHome()">← Shopping</button></div>
+        <div id="wishGrid" class="grid"></div>
+      </section>
+
+      <section id="ordersPage" class="hide">
+        <div class="title"><h2>📦 My Orders</h2><button class="btn light sm" onclick="goHome()">← Home</button></div>
+        <div id="ordersArea"></div>
+      </section>
+
+      <section id="profilePage" class="hide">
+        <div class="title"><h2>👤 My Profile</h2><button class="btn light sm" onclick="goHome()">← Home</button></div>
+        <div id="profileArea"></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div id="management" class="hide">
+  <main class="page"><div class="wrap"><div class="management">
+    <aside class="side" id="side">
+      <h3 id="manageTitle">PK Mart</h3>
+      <button data-tab="dashboard" onclick="manageTab('dashboard')">📊 Dashboard</button>
+      <button data-tab="products" onclick="manageTab('products')">📦 Products</button>
+      <button data-tab="orders" onclick="manageTab('orders')">🛒 Orders</button>
+      <button data-tab="returns" onclick="manageTab('returns')">↩ Returns & Exchange</button>
+      <button data-tab="customers" onclick="manageTab('customers')">👥 Customers</button>
+      <button data-tab="payments" onclick="manageTab('payments')">💰 Payments</button>
+      <button data-tab="reviews" onclick="manageTab('reviews')">⭐ Reviews</button>
+      <button data-tab="coupons" onclick="manageTab('coupons')">🎟 Coupons</button>
+      <button data-tab="deals" onclick="manageTab('deals')">🎁 Deals</button>
+      <button data-tab="admins" onclick="manageTab('admins')">🛡 Admins</button>
+      <button data-tab="settings" onclick="manageTab('settings')">⚙ Settings</button>
+      <button onclick="backToStore()">🏠 Store</button>
+      <button onclick="managementLogout()">🚪 Logout</button>
+    </aside>
+    <section id="manageContent"></section>
+  </div></div></main>
+</div>
+
+<div class="bottom">
+  <button id="bnHome" class="on" onclick="goHome()"><b>⌂</b>Home</button>
+  <button onclick="showCategories()"><b>▦</b>Categories</button>
+  <button onclick="showCart()"><b>🛒</b>Cart</button>
+  <button onclick="showWishlist()"><b>♡</b>Wishlist</button>
+  <button onclick="openLogin()"><b>♙</b>Account</button>
+</div>
+
+<div id="modalRoot"></div>
+
+<script>
+/* ============================================================
+   PK MART — SINGLE FILE FRONTEND
+   Backend: Google Apps Script Web App
+   ============================================================ */
+const API_URL="https://script.google.com/macros/s/AKfycbzJ9SFbjAqWxFskwI1d7p-Y5D4oyXaPt0kFYkvk3GBx3liNMegB15MQmEgnrtvaTuKjiQ/exec";
+const SESSION_KEY="PKMART_SESSION_V1";
+const CART_KEY="PKMART_CART_V1";
+const WISH_KEY="PKMART_WISH_V1";
+
+let products=[], cart=readJSON(CART_KEY,[]), wishlist=readJSON(WISH_KEY,[]);
+let currentUser=readJSON(SESSION_KEY,null), currentTab="dashboard", activeCategory="ALL", settings={};
+let lastCoupon=null;
+
+const $=id=>document.getElementById(id);
+function readJSON(k,d){try{return JSON.parse(localStorage.getItem(k)||"null")??d}catch(e){return d}}
+function saveJSON(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function money(n){return "₹"+Number(n||0).toLocaleString("en-IN",{maximumFractionDigits:2})}
+function uid(prefix){return prefix+"-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,7).toUpperCase()}
+function toast(msg,type=""){let d=document.createElement("div");d.className="toast "+(type==="success"?"ok":type==="error"?"err":"");d.textContent=msg;$("toastbox").appendChild(d);setTimeout(()=>d.remove(),3200)}
+function busy(on){$("loading").classList.toggle("hide",!on)}
+function normalize(res){if(res&&typeof res==="object"&&"body" in res){try{return typeof res.body==="string"?JSON.parse(res.body):res.body}catch(e){}}return res}
+async function api(action,data={},method="POST"){
+  try{
+    let payload={action,...data};
+    let r;
+    if(method==="GET"){
+      const q=new URLSearchParams(payload).toString();
+      r=await fetch(API_URL+"?"+q,{method:"GET",redirect:"follow"});
+    }else{
+      r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload),redirect:"follow"});
+    }
+    const text=await r.text();
+    let out;try{out=JSON.parse(text)}catch(e){throw new Error("Backend ने JSON response नहीं दिया। Apps Script deployment/access check करें।")}
+    out=normalize(out);
+    if(out && (out.success===false || out.ok===false) && out.message) throw new Error(out.message);
+    return out;
+  }catch(e){throw e}
+}
+function apiToken(extra={}){return currentUser?.token?{token:currentUser.token,...extra}:extra}
+
+function modal(title,body,wide=false){
+  $("modalRoot").innerHTML=`<div class="modal-bg" id="modalBg" onclick="if(event.target.id==='modalBg')closeModal()"><div class="modal ${wide?"lg":""}"><div class="mh"><h3>${title}</h3><button class="close" onclick="closeModal()">✕</button></div><div class="mb">${body}</div></div></div>`;
+}
+function closeModal(){$("modalRoot").innerHTML=""}
+
+function showPage(id){
+  ["homePage","listingPage","cartPage","wishPage","ordersPage","profilePage"].forEach(x=>$(x)?.classList.add("hide"));
+  $(id)?.classList.remove("hide");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function goHome(){if($("management")&&!$("management").classList.contains("hide"))backToStore();showPage("homePage");renderProducts(products);setBottom("bnHome")}
+function setBottom(id){document.querySelectorAll(".bottom button").forEach(b=>b.classList.remove("on"));$(id)?.classList.add("on")}
+function scrollToProducts(){showPage("homePage");$("homeGrid").scrollIntoView({behavior:"smooth",block:"start"})}
+function showCategories(){showPage("listingPage");$("listingTitle").textContent="Categories";renderListing(products);setBottom("")}
+function filterCat(cat,btn){
+  activeCategory=cat;document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));btn?.classList.add("active");
+  const list=cat==="ALL"?products:products.filter(p=>String(p.category||p.Category||"").toLowerCase()===String(cat).toLowerCase());
+  showPage("listingPage");$("listingTitle").textContent=cat==="ALL"?"All Products":cat;renderListing(list)
+}
+function searchProducts(q){
+  q=String(q||"").trim().toLowerCase();
+  if(!q){goHome();return}
+  const list=products.filter(p=>[p.name,p.productName,p.title,p.category,p.description].join(" ").toLowerCase().includes(q));
+  showPage("listingPage");$("listingTitle").textContent=`Search: ${q}`;renderListing(list)
+}
+function renderCategories(){
+  const names=[...new Set(products.map(p=>p.category||p.Category).filter(Boolean))];
+  $("categories").innerHTML=`<button class="cat active" onclick="filterCat('ALL',this)">All</button>`+names.map(c=>`<button class="cat" onclick="filterCat(${JSON.stringify(String(c))},this)">${esc(c)}</button>`).join("");
+}
+function normalizeProduct(p){
+  return {id:p.id||p.productId||p["Product ID"]||p.ID||uid("P"),name:p.name||p.productName||p["Product Name"]||p.title||"Product",category:p.category||p.Category||"General",price:Number(p.price||p.Price||0),oldPrice:Number(p.oldPrice||p["Old Price"]||p.mrp||0),stock:Number(p.stock??p.Stock??0),image:p.image||p.imageUrl||p["Image URL"]||p["Image"]||"",rating:Number(p.rating||p.Rating||0),reviews:Number(p.reviews||p.Reviews||0),description:p.description||p.Description||"",status:String(p.status||p.Status||"ACTIVE")};
+}
+async function loadProducts(){
+  try{
+    const r=await api("getProducts",{}, "GET");
+    const arr=r.products||r.data||r.items||r.result||r;
+    if(Array.isArray(arr))products=arr.map(normalizeProduct).filter(p=>p.status!=="DELETED");
+  }catch(e){toast("Products load नहीं हुए: "+e.message,"error")}
+  renderProducts(products);renderCategories()
+}
+function productCard(p){
+  const wished=wishlist.some(x=>String(x)===String(p.id));
+  const out=p.stock<=0;
+  return `<article class="prod">
+    <div class="pimg" onclick="openProduct('${esc(p.id)}')">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:`<div class="placeholder">🛍️</div>`}
+      <span class="stock ${out?"out":""}">${out?"Out of Stock":"In Stock"}</span>
+      <button class="heart" onclick="event.stopPropagation();toggleWish('${esc(p.id)}')">${wished?"❤️":"♡"}</button>
+    </div>
+    <div class="pbody"><div class="pcat">${esc(p.category)}</div><div class="pname">${esc(p.name)}</div>
+    <div class="stars">★ ${p.rating?Number(p.rating).toFixed(1):"New"} ${p.reviews?`(${p.reviews})`:""}</div>
+    <div class="prices"><span class="price">${money(p.price)}</span>${p.oldPrice>p.price?`<span class="old">${money(p.oldPrice)}</span>`:""}</div>
+    <div class="pbuttons"><button class="btn primary" ${out?"disabled":""} onclick="addCart('${esc(p.id)}')">Add to Cart</button><button class="btn light" ${out?"disabled":""} onclick="buyNow('${esc(p.id)}')">Buy Now</button></div></div>
+  </article>`;
+}
+function renderProducts(list){
+  $("homeGrid").innerHTML=list.length?list.map(productCard).join(""):`<div class="empty" style="grid-column:1/-1"><div class="big">🛍️</div>No products available</div>`;
+  $("countText").textContent=`${list.length} products`;
+}
+function renderListing(list){$("listingGrid").innerHTML=list.length?list.map(productCard).join(""):`<div class="empty" style="grid-column:1/-1"><div class="big">🔎</div>No products found</div>`}
+function renderWishlist(){
+  const list=wishlist.map(id=>products.find(p=>String(p.id)===String(id))).filter(Boolean);
+  $("wishGrid").innerHTML=list.length?list.map(productCard).join(""):`<div class="empty" style="grid-column:1/-1"><div class="big">♡</div>Your wishlist is empty</div>`;
+}
+function showWishlist(){showPage("wishPage");renderWishlist();setBottom("")}
+function toggleWish(id){
+  if(wishlist.some(x=>String(x)===String(id)))wishlist=wishlist.filter(x=>String(x)!==String(id));else wishlist.push(id);
+  saveJSON(WISH_KEY,wishlist);updateCounts();renderProducts(products);renderWishlist();toast(wishlist.includes(id)?"Added to wishlist":"Removed from wishlist","success")
+}
+function updateCounts(){$("cartCount").textContent=cart.reduce((a,x)=>a+x.qty,0);$("wishCount").textContent=wishlist.length}
+
+function openProduct(id){
+  const p=products.find(x=>String(x.id)===String(id));if(!p)return;
+  modal(esc(p.name),`<div class="row2">
+    <div class="pimg" style="height:330px;border-radius:14px">${p.image?`<img src="${esc(p.image)}" alt="">`:`<div class="placeholder">🛍️</div>`}</div>
+    <div><div class="pcat">${esc(p.category)}</div><h2 style="margin:7px 0">${esc(p.name)}</h2><div class="stars">★ ${p.rating||"New"} ${p.reviews?`(${p.reviews} reviews)`:""}</div><div class="prices"><span class="price">${money(p.price)}</span>${p.oldPrice>p.price?`<span class="old">${money(p.oldPrice)}</span>`:""}</div><p style="line-height:1.6;color:var(--muted);margin:10px 0">${esc(p.description||"Quality product from PK Mart.")}</p><p><b>${p.stock>0?"✓ In Stock":"✕ Out of Stock"}</b></p><div style="display:flex;gap:8px;margin-top:14px"><button class="btn primary block" ${p.stock<=0?"disabled":""} onclick="addCart('${esc(p.id)}');closeModal()">Add to Cart</button><button class="btn orange block" ${p.stock<=0?"disabled":""} onclick="buyNow('${esc(p.id)}');closeModal()">Buy Now</button></div></div></div>`,true)
+}
+
+function addCart(id,qty=1){
+  const p=products.find(x=>String(x.id)===String(id));if(!p||p.stock<=0)return toast("Product out of stock","error");
+  let x=cart.find(i=>String(i.id)===String(id));if(x){if(x.qty+qty>p.stock)return toast("Available stock से ज्यादा नहीं","error");x.qty+=qty}else cart.push({id:p.id,qty});
+  saveJSON(CART_KEY,cart);updateCounts();toast("Cart में add हो गया","success")
+}
+function buyNow(id){addCart(id);showCart()}
+function changeQty(id,delta){
+  const x=cart.find(i=>String(i.id)===String(id)),p=products.find(p=>String(p.id)===String(id));if(!x)return;
+  x.qty+=delta;if(x.qty<=0)cart=cart.filter(i=>String(i.id)!==String(id));else if(p&&x.qty>p.stock)x.qty=p.stock;
+  saveJSON(CART_KEY,cart);renderCart()
+}
+function removeCart(id){cart=cart.filter(x=>String(x.id)!==String(id));saveJSON(CART_KEY,cart);renderCart();updateCounts()}
+function cartItems(){return cart.map(x=>{const p=products.find(p=>String(p.id)===String(x.id));return p?{...p,qty:x.qty}:null}).filter(Boolean)}
+function cartSubtotal(){return cartItems().reduce((a,x)=>a+x.price*x.qty,0)}
+function deliveryFee(){return cartSubtotal()>=499||cartSubtotal()===0?0:40}
+function renderCart(){
+  const items=cartItems();
+  if(!items.length){$("cartArea").innerHTML=`<div class="card empty"><div class="big">🛒</div><h3>Your cart is empty</h3><button class="btn primary" onclick="goHome()" style="margin-top:12px">Start Shopping</button></div>`;return}
+  $("cartArea").innerHTML=`<div class="checkout-grid"><div class="card">${items.map(x=>`<div class="cartitem"><div class="cartimg">${x.image?`<img src="${esc(x.image)}">`:"🛍️"}</div><div><b>${esc(x.name)}</b><div class="muted">${money(x.price)} × ${x.qty}</div><div class="qty" style="margin-top:6px"><button onclick="changeQty('${esc(x.id)}',-1)">−</button><span>${x.qty}</span><button onclick="changeQty('${esc(x.id)}',1)">+</button></div></div><div class="cartact"><b>${money(x.price*x.qty)}</b><br><button class="btn danger sm" onclick="removeCart('${esc(x.id)}')">Remove</button></div></div>`).join("")}</div>
+  <div class="card summary"><h3>Order Summary</h3><div class="sumrow"><span>Price (${items.length} items)</span><b>${money(cartSubtotal())}</b></div><div class="sumrow"><span>Delivery Fee</span><b>${deliveryFee()?money(deliveryFee()):"FREE"}</b></div><div id="couponResult"></div><div class="sumtotal"><span>Total</span><span id="cartTotal">${money(cartSubtotal()+deliveryFee())}</span></div><button class="btn primary block" onclick="openCheckout()" style="margin-top:13px">Proceed to Checkout</button></div></div>`;
+}
+function showCart(){showPage("cartPage");renderCart();setBottom("")}
+
+function couponBox(){
+  return `<div class="fg" style="margin-top:12px"><label>Coupon Code</label><div style="display:flex;gap:7px"><input id="couponInput" class="input" placeholder="Enter coupon"><button class="btn light" onclick="applyCoupon()">Apply</button></div><div id="couponMsg"></div></div>`
+}
+async function applyCoupon(){
+  const code=$("couponInput")?.value.trim();if(!code)return;
+  if(!currentUser)return openLogin("checkout");
+  try{
+    busy(true);const r=await api("validateCoupon",apiToken({code,subtotal:cartSubtotal()}));lastCoupon={code,discount:Number(r.discount||r.data?.discount||0),...r};busy(false);
+    $("couponMsg").innerHTML=`<div class="notice">Coupon applied: ${money(lastCoupon.discount)} off</div>`;
+    $("cartTotal").textContent=money(Math.max(0,cartSubtotal()-lastCoupon.discount+deliveryFee()));
+  }catch(e){busy(false);lastCoupon=null;$("couponMsg").innerHTML=`<div class="errbox">${esc(e.message||"Invalid coupon")}</div>`}
+}
+function openCheckout(){
+  if(!currentUser)return openLogin("checkout");
+  if(!cartItems().length)return toast("Cart खाली है","error");
+  modal("Checkout",`<div class="notice">COD और UPI available हैं। Order की final coupon/stock calculation server पर verify होगी।</div>
+  <div class="row2"><div class="fg"><label>Full Name</label><input id="coName" class="input" value="${esc(currentUser.name||currentUser.customerName||"")}"></div><div class="fg"><label>Mobile</label><input id="coMobile" class="input" value="${esc(currentUser.mobile||"")}"></div></div>
+  <div class="fg"><label>Address</label><textarea id="coAddress" class="textarea" placeholder="House, street, city, state, PIN"></textarea></div>
+  <div class="fg"><label>Payment Method</label><select id="coPay" class="select"><option value="COD">Cash on Delivery</option><option value="UPI">UPI</option></select></div>
+  ${couponBox()}<div class="card summary" style="box-shadow:none;margin-top:10px"><div class="sumrow"><span>Subtotal</span><b>${money(cartSubtotal())}</b></div><div class="sumrow"><span>Delivery</span><b>${deliveryFee()?money(deliveryFee()):"FREE"}</b></div><div class="sumtotal"><span>Total</span><span>${money(cartSubtotal()+deliveryFee())}</span></div></div>
+  <button class="btn primary block" onclick="placeOrder()">Place Order</button>`)
+}
+async function placeOrder(){
+  const items=cartItems();if(!items.length)return;
+  const address=$("coAddress").value.trim();if(!address)return toast("Address भरें","error");
+  const payload={name:$("coName").value.trim(),customerName:$("coName").value.trim(),mobile:$("coMobile").value.trim(),address,paymentMethod:$("coPay").value,items:items.map(x=>({productId:x.id,id:x.id,name:x.name,quantity:x.qty,qty:x.qty,price:x.price}))};
+  if(lastCoupon?.code)payload.couponCode=lastCoupon.code;
+  try{
+    busy(true);const r=await api("createOrder",apiToken(payload));busy(false);
+    const oid=r.orderId||r.id||r.data?.orderId||"";
+    cart=[];lastCoupon=null;saveJSON(CART_KEY,cart);updateCounts();closeModal();toast("Order successfully placed"+(oid?": "+oid:""),"success");showMyOrders();
+  }catch(e){busy(false);toast(e.message||"Order failed","error")}
+}
+
+function openLogin(after=""){
+  modal("Login",`<div class="login-card">
+    <div class="login-brand"><div class="login-logo">PK</div><h2>Welcome Back</h2><p>Login to your PK Mart account</p></div>
+    <div class="tabs"><button class="tab on" id="ltab" onclick="loginMode('login','${after}')">Login</button><button class="tab" id="stab" onclick="loginMode('signup','${after}')">Signup</button></div>
+    <div id="loginFields">${loginFields(after)}</div>
+    <div class="login-admin"><button class="admin-dot" title="Admin / Owner" onclick="openStaffGateway()">🛡</button></div>
+  </div>`)
+}
+function loginFields(after){
+ return `<div class="fg"><label>Mobile Number</label><input id="loginMobile" class="input" inputmode="numeric" placeholder="Enter mobile number"></div><div class="fg"><label>Password</label><input id="loginPass" class="input" type="password" placeholder="Enter password"></div><button class="btn primary block" onclick="customerLogin('${after}')">Login</button><div style="text-align:center;color:var(--muted);font-size:11px;margin-top:10px">Customer account</div>`
+}
+function loginMode(mode,after){
+  document.querySelectorAll(".tabs .tab").forEach(x=>x.classList.remove("on"));$(mode==="login"?"ltab":"stab").classList.add("on");
+  $("loginFields").innerHTML=mode==="login"?loginFields(after):`<div class="fg"><label>Name</label><input id="suName" class="input" placeholder="Your name"></div><div class="fg"><label>Mobile Number</label><input id="suMobile" class="input" inputmode="numeric" placeholder="10 digit mobile"></div><div class="fg"><label>Password</label><input id="suPass" class="input" type="password" placeholder="Create password"></div><button class="btn primary block" onclick="customerSignup('${after}')">Create Account</button>`;
+}
+async function customerLogin(after){
+  try{busy(true);const r=await api("login",{mobile:$("loginMobile").value.trim(),password:$("loginPass").value});busy(false);setSession(r,"CUSTOMER");closeModal();toast("Login successful","success");after==="checkout"?openCheckout():goHome()}catch(e){busy(false);toast("Wrong number or password","error")}
+}
+async function customerSignup(after){
+  try{busy(true);const r=await api("signup",{name:$("suName").value.trim(),mobile:$("suMobile").value.trim(),password:$("suPass").value});busy(false);setSession(r,"CUSTOMER");closeModal();toast("Account created","success");after==="checkout"?openCheckout():goHome()}catch(e){busy(false);toast(e.message||"Signup failed","error")}
+}
+function setSession(r,fallbackRole){
+  r=r||{};const data=r.user||r.data?.user||r.data||r;
+  currentUser={...data,token:r.token||data.token||r.data?.token,role:(r.role||data.role||fallbackRole).toUpperCase(),permissions:r.permissions||data.permissions||[]};
+  saveJSON(SESSION_KEY,currentUser)
+}
+function openStaffGateway(){
+  modal("Staff Login",`<div class="notice">यहाँ केवल Owner द्वारा बनाया गया Admin या fixed Owner account login करेगा। Customer login के लिए पीछे जाएँ।</div>
+  <button class="btn primary block" onclick="openAdminLogin()">🛡 Admin Login</button>
+  <button class="btn dark block" style="margin-top:8px" onclick="openOwnerLogin()">👑 Owner Login</button>`)
+}
+function openAdminLogin(){
+  modal("Admin Login",`<div class="login-brand"><div class="login-logo">🛡</div><h2>Admin Panel</h2><p>Owner द्वारा बनाया गया mobile + password डालें</p></div>
+  <div class="fg"><label>Admin Mobile Number</label><input id="adminMobile" class="input" inputmode="numeric" placeholder="Admin mobile number"></div>
+  <div class="fg"><label>Admin Password</label><input id="adminPass" class="input" type="password" placeholder="Admin password"></div>
+  <button class="btn primary block" onclick="adminLogin()">Admin Login</button>
+  <button class="btn light block" style="margin-top:8px" onclick="openOwnerLogin()">👑 Owner Login</button>`)
+}
+async function adminLogin(){
+  try{busy(true);const r=await api("adminLogin",{mobile:$("adminMobile").value.trim(),password:$("adminPass").value});busy(false);setSession(r,"ADMIN");closeModal();enterManagement();toast("Admin login successful","success")}catch(e){busy(false);toast("Wrong Admin number or password","error")}
+}
+function openOwnerLogin(){
+  modal("Owner Login",`<div class="login-brand"><div class="login-logo">👑</div><h2>Owner Panel</h2><p>Owner credentials server-side verify होंगे</p></div>
+  <div class="fg"><label>Owner Mobile Number</label><input id="ownerMobile" class="input" inputmode="numeric" placeholder="Owner mobile"></div>
+  <div class="fg"><label>Owner Password</label><input id="ownerPass" class="input" type="password" placeholder="Owner password"></div>
+  <button class="btn dark block" onclick="ownerLogin()">Owner Login</button>`)
+}
+async function ownerLogin(){
+  try{busy(true);const r=await api("ownerLogin",{mobile:$("ownerMobile").value.trim(),password:$("ownerPass").value});busy(false);setSession(r,"OWNER");closeModal();enterManagement();toast("Owner login successful","success")}catch(e){busy(false);toast("Wrong Owner number or password","error")}
+}
+function openLoginFromHeader(){openLogin()}
+function toggleUser(){openLogin()}
+function logout(){currentUser=null;localStorage.removeItem(SESSION_KEY);closeModal();toast("Logged out","success");goHome()}
+function managementLogout(){logout();backToStore()}
+function backToStore(){$("management").classList.add("hide");$("store").classList.remove("hide");goHome()}
+function enterManagement(){
+  $("store").classList.add("hide");$("management").classList.remove("hide");$("manageTitle").textContent=currentUser.role==="OWNER"?"👑 Owner Panel":"🛡 Admin Panel";applyPermissions();manageTab("dashboard")
+}
+function hasPerm(p){return currentUser?.role==="OWNER"||((currentUser?.permissions||[]).map(x=>String(x).toUpperCase()).includes(p))}
+const tabPerm={dashboard:"DASHBOARD",products:"PRODUCTS",orders:"ORDERS",returns:"RETURNS",customers:"CUSTOMERS",payments:"PAYMENTS",reviews:"REVIEWS",coupons:"COUPONS",deals:"DEALS",admins:"ADMINS",settings:"SETTINGS"};
+function applyPermissions(){document.querySelectorAll("#side [data-tab]").forEach(b=>{const t=b.dataset.tab;b.classList.toggle("hide",currentUser?.role!=="OWNER"&&!hasPerm(tabPerm[t]||t.toUpperCase()))})}
+async function manageTab(tab){
+  if(currentUser?.role!=="OWNER"&&!hasPerm(tabPerm[tab]||tab.toUpperCase()))return toast("आपको इस section की permission नहीं है","error");
+  currentTab=tab;document.querySelectorAll("#side [data-tab]").forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));
+  const c=$("manageContent");c.innerHTML=`<div class="card empty"><div class="big">⏳</div>Loading...</div>`;
+  try{
+    if(tab==="dashboard")return dashboard();
+    if(tab==="products")return productsAdmin();
+    if(tab==="orders")return ordersAdmin();
+    if(tab==="returns")return returnsAdmin();
+    if(tab==="customers")return customersAdmin();
+    if(tab==="payments")return paymentsAdmin();
+    if(tab==="reviews")return reviewsAdmin();
+    if(tab==="coupons")return couponsAdmin();
+    if(tab==="deals")return dealsAdmin();
+    if(tab==="admins")return adminsAdmin();
+    if(tab==="settings")return settingsAdmin();
+  }catch(e){c.innerHTML=`<div class="errbox">${esc(e.message)}</div>`}
+}
+async function dashboard(){
+  let r={};try{r=await api("dashboard",apiToken())}catch(e){}
+  const d=r.data||r.dashboard||r;
+  $("manageContent").innerHTML=`<div class="title"><h2>Dashboard</h2><span class="muted">Live backend data</span></div>
+  <div class="stats">${[
+    ["💰","Total Sales",d.totalSales||0],["🛒","Total Orders",d.totalOrders||0],["👥","Customers",d.totalCustomers||0],["⏳","Pending Orders",d.pendingOrders||0]
+  ].map(x=>`<div class="card stat"><div>${x[0]}</div><div class="l">${x[1]}</div><div class="n">${x[1]==="Total Sales"?money(x[2]):x[2]}</div></div>`).join("")}</div>
+  <div class="card" style="padding:16px;margin-top:14px"><h3>Quick Actions</h3><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">${hasPerm("ADD_PRODUCT")?`<button class="btn primary" onclick="productForm()">+ Add Product</button>`:""}${hasPerm("ORDERS")?`<button class="btn light" onclick="manageTab('orders')">View Orders</button>`:""}${currentUser.role==="OWNER"?`<button class="btn dark" onclick="manageTab('admins')">Manage Admins</button>`:""}</div></div>`;
+}
+async function productsAdmin(){
+  $("manageContent").innerHTML=`<div class="title"><h2>Products</h2>${hasPerm("ADD_PRODUCT")?`<button class="btn primary sm" onclick="productForm()">+ Add Product</button>`:""}</div><div class="card table"><table><thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Action</th></tr></thead><tbody>${products.map(p=>`<tr><td>${p.image?`<img src="${esc(p.image)}" style="width:45px;height:45px;object-fit:cover;border-radius:8px">`:"🛍️"}</td><td><b>${esc(p.name)}</b></td><td>${esc(p.category)}</td><td>${money(p.price)}</td><td>${p.stock}</td><td>${p.stock>0?"In Stock":"Out of Stock"}</td><td>${hasPerm("EDIT_PRODUCT")?`<button class="btn light sm" onclick="productForm('${esc(p.id)}')">Edit</button>`:""} ${hasPerm("DELETE_PRODUCT")?`<button class="btn danger sm" onclick="deleteProduct('${esc(p.id)}')">Delete</button>`:""}</td></tr>`).join("")}</tbody></table></div>`;
+}
+function productForm(id=""){
+ const p=products.find(x=>String(x.id)===String(id))||{};
+ modal(id?"Edit Product":"Add Product",`<div class="row2"><div class="fg"><label>Product Name</label><input id="pfName" class="input" value="${esc(p.name)}"></div><div class="fg"><label>Category</label><input id="pfCat" class="input" value="${esc(p.category)}"></div></div><div class="row3"><div class="fg"><label>Price</label><input id="pfPrice" class="input" type="number" value="${p.price||""}"></div><div class="fg"><label>Old/MRP Price</label><input id="pfOld" class="input" type="number" value="${p.oldPrice||""}"></div><div class="fg"><label>Stock</label><input id="pfStock" class="input" type="number" value="${p.stock??0}"></div></div><div class="fg"><label>Image URL</label><input id="pfImage" class="input" value="${esc(p.image)}" placeholder="Drive/public image URL"></div><div class="fg"><label>Description</label><textarea id="pfDesc" class="textarea">${esc(p.description)}</textarea></div><button class="btn primary block" onclick="saveProduct('${esc(id)}')">${id?"Update Product":"Create Product"}</button>`)
+}
+async function saveProduct(id){
+ const data={name:$("pfName").value.trim(),category:$("pfCat").value.trim(),price:Number($("pfPrice").value),oldPrice:Number($("pfOld").value||0),stock:Number($("pfStock").value||0),image:$("pfImage").value.trim(),description:$("pfDesc").value.trim()};
+ try{busy(true);await api(id?"updateProduct":"addProduct",apiToken(id?{productId:id,id,...data}:{...data}));busy(false);closeModal();await loadProducts();toast("Product saved","success");manageTab("products")}catch(e){busy(false);toast(e.message,"error")}
+}
+async function deleteProduct(id){if(!confirm("Delete this product?"))return;try{busy(true);await api("deleteProduct",apiToken({productId:id,id}));busy(false);await loadProducts();manageTab("products");toast("Product deleted","success")}catch(e){busy(false);toast(e.message,"error")}}
+
+async function ordersAdmin(){
+ let r=await api("getAllOrders",apiToken());let arr=r.orders||r.data||r.result||r;if(!Array.isArray(arr))arr=[];
+ $("manageContent").innerHTML=`<div class="title"><h2>Orders</h2></div><div class="card table"><table><thead><tr><th>Order ID</th><th>Customer</th><th>Total</th><th>Payment</th><th>Status</th><th>Action</th></tr></thead><tbody>${arr.map(o=>`<tr><td>${esc(o.orderId||o["Order ID"])}</td><td>${esc(o.customerName||o["Customer Name"]||o.name)}<br>${esc(o.mobile||o.Mobile)}</td><td>${money(o.total||o.Total)}</td><td>${esc(o.paymentMethod||o["Payment Method"]||"")}</td><td>${esc(o.orderStatus||o["Order Status"]||o.status||"")}</td><td>${hasPerm("ORDERS")?`<select class="select" style="width:auto" onchange="setOrderStatus('${esc(o.orderId||o['Order ID'])}',this.value)"><option value="">Change</option><option>Pending</option><option>Confirmed</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select>`:""}</td></tr>`).join("")}</tbody></table></div>`;
+}
+async function setOrderStatus(id,status){if(!status)return;try{busy(true);await api("updateOrderStatus",apiToken({orderId:id,status}));busy(false);toast("Order status updated","success");manageTab("orders")}catch(e){busy(false);toast(e.message,"error")}}
+
+async function returnsAdmin(){
+ let r=await api("getReturns",apiToken());let arr=r.returns||r.data||r.result||r;if(!Array.isArray(arr))arr=[];
+ $("manageContent").innerHTML=`<div class="title"><h2>Returns & Exchange</h2></div><div class="card table"><table><thead><tr><th>Return ID</th><th>Order</th><th>Product</th><th>Type</th><th>Reason</th><th>Status</th></tr></thead><tbody>${arr.map(x=>`<tr><td>${esc(x.returnId||x["Return ID"])}</td><td>${esc(x.orderId||x["Order ID"])}</td><td>${esc(x.productId||x["Product ID"])}</td><td>${esc(x.type||x.Type||"Return")}</td><td>${esc(x.reason||x.Reason)}</td><td>${esc(x.status||x.Status)}</td></tr>`).join("")}</tbody></table></div>`;
+}
+async function customersAdmin(){
+ let r=await api("getCustomers",apiToken()).catch(()=>({}));let arr=r.customers||r.data||[];if(!Array.isArray(arr))arr=[];
+ $("manageContent").innerHTML=`<div class="title"><h2>Customers</h2></div><div class="card table"><table><thead><tr><th>Name</th><th>Mobile</th><th>User ID</th><th>Status</th></tr></thead><tbody>${arr.map(x=>`<tr><td>${esc(x.name||x["Name"])}</td><td>${esc(x.mobile||x["Mobile"])}</td><td>${esc(x.userId||x["User ID"])}</td><td>${esc(x.status||"ACTIVE")}</td></tr>`).join("")||`<tr><td colspan="4">Backend customer list action available होने पर data दिखेगा।</td></tr>`}</tbody></table></div>`;
+}
+async function paymentsAdmin(){
+ let r=await api("getPayments",apiToken());let arr=r.payments||r.data||r.result||r;if(!Array.isArray(arr))arr=[];
+ $("manageContent").innerHTML=`<div class="title"><h2>Payments</h2></div><div class="card table"><table><thead><tr><th>Payment ID</th><th>Order ID</th><th>Method</th><th>Amount</th><th>Status</th></tr></thead><tbody>${arr.map(x=>`<tr><td>${esc(x.paymentId||x["Payment ID"])}</td><td>${esc(x.orderId||x["Order ID"])}</td><td>${esc(x.method||x["Payment Method"])}</td><td>${money(x.amount||x.Amount)}</td><td>${esc(x.status||x["Payment Status"])}</td></tr>`).join("")}</tbody></table></div>`;
+}
+async function reviewsAdmin(){
+ let r=await api("getReviews",apiToken()).catch(()=>({}));let arr=r.reviews||r.data||[];if(!Array.isArray(arr))arr=[];
+ $("manageContent").innerHTML=`<div class="title"><h2>Reviews</h2></div><div class="card table"><table><thead><tr><th>Product</th><th>Rating</th><th>Review</th><th>Customer</th></tr></thead><tbody>${arr.map(x=>`<tr><td>${esc(x.productId||x["Product ID"])}</td><td>★ ${esc(x.rating||x.Rating)}</td><td>${esc(x.review||x.Review||x.comment)}</td><td>${esc(x.userId||x["User ID"])}</td></tr>`).join("")||`<tr><td colspan="4">No reviews found.</td></tr>`}</tbody></table></div>`;
+}
+async function couponsAdmin(){
+ let r=await api("getCoupons",apiToken());let arr=r.coupons||r.data||r.result||r;if(!Array.isArray(arr))arr=[];
+ $("manageContent").innerHTML=`<div class="title"><h2>Coupons</h2><button class="btn primary sm" onclick="couponForm()">+ Create Coupon</button></div><div class="card table"><table><thead><tr><th>Code</th><th>Type</th><th>Value</th><th>Min Order</th><th>Expiry</th><th>Status</th><th>Action</th></tr></thead><tbody>${arr.map(x=>`<tr><td><b>${esc(x.code||x.Code)}</b></td><td>${esc(x.type||x.Type)}</td><td>${esc(x.value||x.Value)}</td><td>${money(x.minOrder||x["Min Order"])}</td><td>${esc(x.expiry||x["Expiry"]||x.endDate||"")}</td><td>${esc(x.status||x.Status||"ACTIVE")}</td><td><button class="btn danger sm" onclick="removeCoupon('${esc(x.code||x.Code)}')">Delete</button></td></tr>`).join("")}</tbody></table></div>`;
+}
+function couponForm(){modal("Create Coupon",`<div class="row2"><div class="fg"><label>Code</label><input id="cpCode" class="input" placeholder="PK10"></div><div class="fg"><label>Type</label><select id="cpType" class="select"><option value="PERCENT">Percent</option><option value="FIXED">Fixed</option></select></div></div><div class="row3"><div class="fg"><label>Value</label><input id="cpValue" class="input" type="number"></div><div class="fg"><label>Min Order</label><input id="cpMin" class="input" type="number" value="0"></div><div class="fg"><label>Max Discount</label><input id="cpMax" class="input" type="number" value="0"></div></div><div class="row2"><div class="fg"><label>Start Date</label><input id="cpStart" class="input" type="datetime-local"></div><div class="fg"><label>Expiry</label><input id="cpEnd" class="input" type="datetime-local"></div></div><div class="fg"><label>Usage Limit</label><input id="cpLimit" class="input" type="number" value="0"></div><button class="btn primary block" onclick="createCoupon()">Create Coupon</button>`)}
+async function createCoupon(){try{busy(true);await api("createCoupon",apiToken({code:$("cpCode").value.trim().toUpperCase(),type:$("cpType").value,value:Number($("cpValue").value),minOrder:Number($("cpMin").value||0),maxDiscount:Number($("cpMax").value||0),startDate:$("cpStart").value,expiry:$("cpEnd").value,usageLimit:Number($("cpLimit").value||0),active:true}));busy(false);closeModal();toast("Coupon created","success");manageTab("coupons")}catch(e){busy(false);toast(e.message,"error")}}
+async function removeCoupon(code){if(!confirm("Delete coupon "+code+"?"))return;try{busy(true);await api("deleteCoupon",apiToken({code}));busy(false);manageTab("coupons");toast("Coupon deleted","success")}catch(e){busy(false);toast(e.message,"error")}}
+async function dealsAdmin(){
+ $("manageContent").innerHTML=`<div class="title"><h2>Deals & Offers</h2></div><div class="card" style="padding:16px"><div class="notice">Deals section को Products/Coupons/Settings के साथ backend से control किया जा सकता है।</div><button class="btn primary" onclick="manageTab('coupons')">Manage Coupons</button></div>`;
+}
+async function adminsAdmin(){
+ if(currentUser.role!=="OWNER")return $("manageContent").innerHTML=`<div class="errbox">Only Owner can manage Admins.</div>`;
+ let r=await api("listAdmins",apiToken());let arr=r.admins||r.data||r.result||r;if(!Array.isArray(arr))arr=[];
+ $("manageContent").innerHTML=`<div class="title"><h2>Admin Management</h2><button class="btn primary sm" onclick="adminForm()">+ Add Admin</button></div>
+ <div class="card table"><table><thead><tr><th>Name</th><th>Mobile</th><th>Permissions</th><th>Status</th><th>Action</th></tr></thead><tbody>${arr.map(a=>`<tr><td><b>${esc(a.name||a.Name)}</b></td><td>${esc(a.mobile||a.Mobile)}</td><td>${esc((a.permissions||a.Permissions||[]).join(", "))}</td><td>${esc(a.status||a.Status)}</td><td><button class="btn light sm" onclick="adminForm('${esc(a.adminId||a['Admin ID']||a.id)}')">Edit</button> <button class="btn danger sm" onclick="removeAdmin('${esc(a.adminId||a['Admin ID']||a.id)}')">Remove</button></td></tr>`).join("")}</tbody></table></div>`;
+}
+const PERMS=["PRODUCTS","ADD_PRODUCT","EDIT_PRODUCT","DELETE_PRODUCT","STOCK","ORDERS","RETURNS","EXCHANGE","CUSTOMERS","PAYMENTS","REVIEWS","COUPONS","DEALS","DASHBOARD"];
+function adminForm(id=""){
+ modal(id?"Edit Admin":"Create New Admin",`<div class="row2"><div class="fg"><label>Admin Name</label><input id="afName" class="input" placeholder="Admin name"></div><div class="fg"><label>Admin Mobile Number</label><input id="afMobile" class="input" inputmode="numeric" placeholder="Admin login number"></div></div><div class="fg"><label>${id?"New ":""}Admin Password</label><input id="afPass" class="input" type="password" placeholder="${id?"Leave blank to keep existing":"Create password"}"></div><div class="fg"><label>Permissions</label><div class="permgrid">${PERMS.map(p=>`<label class="perm"><input type="checkbox" class="permcheck" value="${p}"> ${p}</label>`).join("")}</div></div><button class="btn primary block" onclick="saveAdmin('${esc(id)}')">${id?"Update Admin":"Create Admin"}</button>`);
+}
+async function saveAdmin(id){
+ const permissions=[...document.querySelectorAll(".permcheck:checked")].map(x=>x.value);
+ const data={name:$("afName").value.trim(),mobile:$("afMobile").value.trim(),password:$("afPass").value,permissions};
+ if(!data.name||!data.mobile||(!id&&!data.password))return toast("Name, mobile और password भरें","error");
+ try{busy(true);await api(id?"updateAdmin":"createAdmin",apiToken(id?{adminId:id,id,...data}:data));busy(false);closeModal();toast("Admin saved","success");manageTab("admins")}catch(e){busy(false);toast(e.message,"error")}
+}
+async function removeAdmin(id){if(!confirm("Remove this admin?"))return;try{busy(true);await api("removeAdmin",apiToken({adminId:id,id}));busy(false);toast("Admin removed","success");manageTab("admins")}catch(e){busy(false);toast(e.message,"error")}}
+async function settingsAdmin(){
+ let r=await api("getSettings",apiToken()).catch(()=>({}));settings=r.settings||r.data||r||{};
+ $("manageContent").innerHTML=`<div class="title"><h2>Settings</h2></div><div class="card" style="padding:16px">${currentUser.role==="OWNER"?`<div class="fg"><label>Store Name</label><input id="setName" class="input" value="${esc(settings.storeName||settings["Store Name"]||"PK Mart")}"></div><div class="fg"><label>Tagline</label><input id="setTag" class="input" value="${esc(settings.tagline||"Shop Smart • Live Better")}"></div><button class="btn primary" onclick="saveSettings()">Save Settings</button>`:`<div class="notice">Settings change केवल Owner कर सकता है।</div>`}</div>`;
+}
+async function saveSettings(){try{busy(true);await api("saveSettings",apiToken({settings:{storeName:$("setName").value,tagline:$("setTag").value}}));busy(false);toast("Settings saved","success")}catch(e){busy(false);toast(e.message,"error")}}
+
+async function showMyOrders(){
+  if(!currentUser)return openLogin();
+  showPage("ordersPage");setBottom("");
+  $("ordersArea").innerHTML=`<div class="card empty">Loading orders...</div>`;
+  try{
+    const r=await api("getOrders",apiToken());const arr=r.orders||r.data||r.result||r;
+    if(!Array.isArray(arr)||!arr.length){$("ordersArea").innerHTML=`<div class="card empty"><div class="big">📦</div>No orders yet.</div>`;return}
+    $("ordersArea").innerHTML=arr.map(o=>orderCard(o)).join("");
+  }catch(e){$("ordersArea").innerHTML=`<div class="errbox">${esc(e.message)}</div>`}
+}
+function orderCard(o){
+ const id=o.orderId||o["Order ID"],status=String(o.orderStatus||o["Order Status"]||o.status||"Pending"),total=o.total||o.Total;
+ const steps=["Pending","Confirmed","Shipped","Delivered"];let ix=steps.findIndex(s=>status.toLowerCase().includes(s.toLowerCase()));if(ix<0)ix=0;
+ return `<div class="card order"><div class="orderhead"><div><b>#${esc(id)}</b><div class="muted">${esc(o.createdAt||o["Created At"]||"")}</div></div><div><b>${money(total)}</b> <span class="status ${status.toLowerCase()}">${esc(status)}</span></div></div><div class="timeline">${steps.map((s,i)=>`<div class="step ${i<=ix?"on":""}">${s}</div>`).join("")}</div><div class="muted">Payment: ${esc(o.paymentMethod||o["Payment Method"]||"")} • ${esc(o.paymentStatus||o["Payment Status"]||"")}</div><div style="display:flex;gap:7px;margin-top:10px"><button class="btn light sm" onclick="openOrderDetails('${esc(id)}')">View Details</button>${status.toLowerCase()!=="delivered"&&status.toLowerCase()!=="cancelled"?`<button class="btn danger sm" onclick="requestReturn('${esc(id)}')">Return / Exchange</button>`:""}</div></div>`;
+}
+async function openOrderDetails(id){try{const r=await api("getOrders",apiToken());const arr=r.orders||r.data||r;const o=(Array.isArray(arr)?arr:[]).find(x=>String(x.orderId||x["Order ID"])===String(id));if(o)modal("Order Details",`<pre style="white-space:pre-wrap;font-size:12px">${esc(JSON.stringify(o,null,2))}</pre>`)}catch(e){toast(e.message,"error")}}
+function requestReturn(orderId){if(!currentUser)return openLogin();modal("Return / Exchange",`<div class="fg"><label>Product ID</label><input id="retProduct" class="input" placeholder="Product ID"></div><div class="fg"><label>Type</label><select id="retType" class="select"><option value="RETURN">Return</option><option value="EXCHANGE">Exchange</option></select></div><div class="fg"><label>Reason</label><textarea id="retReason" class="textarea" placeholder="Reason"></textarea></div><button class="btn primary block" onclick="submitReturn('${esc(orderId)}')">Submit Request</button>`)}
+async function submitReturn(orderId){try{busy(true);await api("createReturn",apiToken({orderId,productId:$("retProduct").value.trim(),type:$("retType").value,reason:$("retReason").value.trim()}));busy(false);closeModal();toast("Request submitted","success");showMyOrders()}catch(e){busy(false);toast(e.message,"error")}}
+function showProfile(){
+ if(!currentUser)return openLogin();
+ showPage("profilePage");setBottom("");
+ $("profileArea").innerHTML=`<div class="card" style="padding:18px"><div style="display:flex;gap:12px;align-items:center"><div class="login-logo" style="width:55px;height:55px;font-size:23px">👤</div><div><h3>${esc(currentUser.name||currentUser.customerName||currentUser.role)}</h3><div class="muted">${esc(currentUser.mobile||"")}</div><div class="muted">${esc(currentUser.role)}</div></div></div><hr style="border:0;border-top:1px solid var(--line);margin:16px 0"><button class="btn light block" onclick="showMyOrders()">📦 My Orders</button><button class="btn danger block" style="margin-top:8px" onclick="logout()">🚪 Logout</button></div>`
+}
+function showMyOrdersShortcut(){showMyOrders()}
+
+function openAccountMenu(){openLogin()}
+function showUserEntry(){openLogin()}
+
+function renderOffer(){ $("offerBanner").innerHTML=`<div class="banner">🎉 Special Offers: COD + UPI • Free delivery on orders ₹499+ • Use available coupons at checkout</div>`}
+function init(){
+  updateCounts();renderOffer();renderProducts([]);loadProducts();
+  setTimeout(()=>{$("splash").classList.add("off");setTimeout(()=>$("splash").remove(),450)},1800);
+  if(currentUser?.role==="OWNER"||currentUser?.role==="ADMIN"){}
+}
+init();
+
+/* Header account button */
+document.querySelectorAll(".navicons .ico")[2]?.addEventListener("click",openLogin);
+</script>
+</body>
+</html>
